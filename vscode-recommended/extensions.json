@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "oxc.oxc-vscode",
+    "clinyong.vscode-css-modules",
+    "ritwickdey.LiveServer",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

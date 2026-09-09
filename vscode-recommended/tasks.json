@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "label": "npm: dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": { "regexp": "^$" },
+        "background": { "activeOnStart": true, "beginsPattern": "VITE", "endsPattern": "Local:" }
+      }
+    },
+    { "type": "npm", "script": "build", "label": "npm: build", "group": "build" },
+    { "type": "npm", "script": "typecheck", "label": "npm: typecheck", "group": "test" },
+    { "type": "npm", "script": "lint", "label": "npm: lint", "group": "test" }
+  ]
+}

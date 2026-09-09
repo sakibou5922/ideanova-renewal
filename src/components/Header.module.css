@@ -1,0 +1,268 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* backdrop-filter は fixed 子孫（モバイルナビ）の包含ブロックを作るため使用しない */
+  background: var(--color-bg);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.header[data-scrolled='true'] {
+  border-bottom-color: var(--color-ink);
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  z-index: 60;
+}
+
+.skip:focus-visible {
+  top: var(--space-2);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 68px;
+  padding-inline: var(--gutter);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-ink);
+  text-decoration: none;
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.brandMark {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border: 2px solid var(--color-ink);
+  overflow: hidden;
+}
+
+.brandMarkAgri {
+  background: var(--color-agri);
+}
+
+.brandMarkCosme {
+  background: var(--color-cosme);
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.toggle {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-ink);
+}
+
+.toggleLabel {
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+}
+
+.toggleBars {
+  position: relative;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  transition: background var(--duration) var(--ease-out);
+}
+
+.toggleBars::before,
+.toggleBars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.toggleBars::before {
+  top: -6px;
+}
+
+.toggleBars::after {
+  top: 6px;
+}
+
+.toggleBars[data-open='true'] {
+  background: transparent;
+}
+
+.toggleBars[data-open='true']::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.toggleBars[data-open='true']::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* モバイル: 全面の紙 */
+.nav {
+  position: fixed;
+  inset: 68px 0 0 0;
+  background: var(--color-bg);
+  padding: var(--space-8) var(--gutter) var(--space-8);
+  overflow-y: auto;
+  display: none;
+  flex-direction: column;
+  border-top: var(--hairline);
+}
+
+.nav[data-open='true'] {
+  display: flex;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: var(--hairline);
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  min-height: 64px;
+  padding: var(--space-3) 0;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+}
+
+.linkActive .label {
+  color: var(--color-accent);
+}
+
+.navFoot {
+  margin-top: auto;
+  padding-top: var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
+
+@media (min-width: 768px) {
+  .toggle {
+    display: none;
+  }
+
+  .nav,
+  .nav[data-open='true'] {
+    display: block;
+    position: static;
+    inset: auto;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+    border-top: 0;
+  }
+
+  .navFoot {
+    display: none;
+  }
+
+  .list {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .item {
+    border-bottom: 0;
+  }
+
+  .num {
+    display: none;
+  }
+
+  .link {
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    position: relative;
+  }
+
+  .label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .link::after {
+    content: '';
+    position: absolute;
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: 8px;
+    height: 2px;
+    background: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  .link:hover::after,
+  .linkActive::after {
+    transform: scaleX(1);
+  }
+
+  .linkActive .label {
+    color: var(--color-ink);
+  }
+}

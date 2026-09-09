@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.encoding": "utf8",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "css.lint.unknownAtRules": "ignore",
+  "search.exclude": { "**/node_modules": true, "**/dist": true },
+  "files.associations": { "*.cmd": "bat" }
+}
