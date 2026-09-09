@@ -50,6 +50,16 @@ docs/
 - 新着情報: `src/data/news.ts` に追加（新しい順）。`date` 確定後に `pending` を外す。
 - 会社情報: `src/data/site.ts`。
 
+## 公開URL（GitHub Pages）
+
+`main` ブランチへ push すると GitHub Actions（`.github/workflows/deploy.yml`）が自動でビルドし、次の URL に公開されます（初回は Settings → Pages の有効化が自動で行われ、1〜2分で反映）。
+
+```
+https://sakibou5922.github.io/ideanova-renewal/
+```
+
+サブパス配信のため `vite.config.ts` の `base` を `BASE_PATH` 環境変数で切り替え、`BrowserRouter` の `basename` に `import.meta.env.BASE_URL` を渡しています。ローカル開発は従来どおり `/` で動きます。
+
 ## デプロイ時の注意
 
 - SPA のため、静的ホスティングでは全パスを `index.html` へフォールバックする設定が必要（旧 URL `/staret-hp/` は `/news/staret-hp` へアプリ内リダイレクト）。

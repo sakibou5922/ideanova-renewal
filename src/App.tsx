@@ -10,7 +10,7 @@ import { Service } from './pages/Service';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
