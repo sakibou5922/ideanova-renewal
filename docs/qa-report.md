@@ -95,3 +95,31 @@ QA 観測事項への対応（engineering-dept、QA 未再検証）: `public/ima
 - Web フォント適用時の縦書きレール・見出しの見た目（サンドボックスで Google Fonts 遮断）。
 - 実機（iOS Safari / Android Chrome）のタッチ操作、`ローカル確認.cmd` の Windows 実行。
 - 写真設定時（images.ts に src を入れた状態）の表示。
+
+---
+
+## v3「Luminous」検証 — REQ-20260909-07 / -R1
+
+### 初回（v3）
+| 項目 | 判定 | 要約 |
+| --- | --- | --- |
+| build / typecheck / lint | 合格 | 0/0 |
+| 7幅×10ルート横スクロール | 合格 | 70/70 |
+| ヒーロー H1・分割カラム | 合格 | ≥1024 で2カラム |
+| 画像（cosme / cosme-wide、サブパス配信） | 合格 | BASE_PATH ビルドで `/ideanova-renewal/images/...` |
+| 完了条件回帰（DDE・関連企業なし、会社概要7項目） | 合格 | — |
+| コントラスト | **不合格** | `--color-ink-muted` #6b726d が淡色面上で 4.03〜4.22 |
+| a11y / リビール / コンソール / レール / フォーム | 合格 | — |
+| 目視 | **不合格** | 768px /service 化粧水側の本文列が 168px（列反転の不備）、320/375 で「Fig. 03」折返し |
+
+### 修正（engineering-dept）
+- `--color-ink-muted` → #5c635f（紙 5.91 / 淡色面 ≥5.04）。
+- 偶数セクションは列定義ごと反転（7fr/5fr）、レールの sticky 2カラムは ≥1024px。
+- `.figNum { flex: none; white-space: nowrap }`。/contact の h1 英字（Contact / Thank you）。
+
+### 再検証（-R1）— 全合格
+本文列幅 768px 168→384px、`.figNum` 1行、描画色サンプリング最小 5.04:1、70/70 横スクロールなし、レール sticky・aria-current 回帰OK。
+
+### 未検証項目
+- Web フォント適用時の見た目（サンドボックス遮断）。実機タッチ。
+- 画像の許諾書面（ユーザー申告のみ）。ideanova と株式会社エックスワンの関係表記（要確認）。

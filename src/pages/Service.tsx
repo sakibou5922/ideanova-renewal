@@ -41,7 +41,10 @@ export function Service() {
   return (
     <div className="container">
       <div className="pageHead">
-        <h1 className="pageTitle">事業内容</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">Service</span>
+          事業内容
+        </h1>
         <p className="pageLede">
           土に根ざす農業支援と、肌に寄り添う化粧水。二つの事業で、地域の暮らしと産業を支えます。
         </p>
@@ -80,16 +83,27 @@ export function Service() {
                 <span className={styles.bigNum} aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
+                {p.id === 'cosme' && images.cosmeWide.src && (
+                  <Plate
+                    image={images.cosmeWide}
+                    pillar={p.id}
+                    figure="Fig. 03"
+                    caption="スキンケアシリーズ（株式会社エックスワン提供）"
+                    ratio="980/340"
+                    className={styles.wide}
+                  />
+                )}
                 <div className={styles.pillarGrid}>
                   <Plate
                     image={{ ...images[p.id], alt: images[p.id].alt || p.imageAlt }}
                     pillar={p.id}
-                    figure={`Fig. ${String(i + 2).padStart(2, '0')}`}
+                    figure={`Fig. ${String(i + 2 + (p.id === 'cosme' && images.cosmeWide.src ? 1 : 0)).padStart(2, '0')}`}
                     caption={p.title}
                     className={styles.figure}
                   />
                   <div className={styles.body}>
                     <h2 id={`${p.anchor}-title`} className={styles.title}>
+                      <span className={styles.titleEn}>{p.labelEn}</span>
                       {p.title}
                     </h2>
                     <p className={styles.subtitle} data-pending={p.subtitle.startsWith('[要確認]')}>

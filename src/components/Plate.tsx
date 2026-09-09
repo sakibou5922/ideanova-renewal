@@ -1,5 +1,5 @@
 import { MotifAgri, MotifCosme } from './Art';
-import type { ImageSlot } from '../data/images';
+import { asset, type ImageSlot } from '../data/images';
 import type { PillarId } from '../data/pillars';
 import styles from './Plate.module.css';
 
@@ -9,7 +9,8 @@ type Props = {
   /** 図版番号（印刷物の「図版」風キャプション） */
   figure?: string;
   caption?: string;
-  ratio?: '4/5' | '3/4' | '1/1' | '16/10';
+  /** CSS aspect-ratio 値（例 '4/5', '980/340'） */
+  ratio?: string;
   className?: string;
 };
 
@@ -26,7 +27,7 @@ export function Plate({ image, pillar, figure, caption, ratio = '4/5', className
     <figure className={[styles.figure, className].filter(Boolean).join(' ')} data-pillar={pillar}>
       <div className={styles.frame} style={{ aspectRatio: ratio }}>
         {hasPhoto ? (
-          <img src={image.src ?? undefined} alt={image.alt} loading="lazy" decoding="async" className={styles.img} />
+          <img src={asset(image.src ?? '')} alt={image.alt} loading="lazy" decoding="async" className={styles.img} />
         ) : (
           <div className={styles.plate} role="img" aria-label={image.alt || '図版プレースホルダー'}>
             <Motif className={styles.motif} />

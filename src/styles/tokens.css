@@ -1,26 +1,26 @@
-/* Hallmark · genre: editorial · macrostructure: Letter+Diptych · theme: custom "Soil & Water"
+/* Hallmark · genre: editorial/atmospheric · macrostructure: Split hero + stacked fields · theme: custom "Luminous"
  * enrichment: E5 (hand-built SVG) · polish: HP1 (vertical rail) · nav: N9 · footer: Ft1
  * pre-emit critique: P5 H4 E4 S5 R4 V4
  * デザイントークン — docs/design-spec.md v2 を正とする */
 :root {
   /* 紙とインク */
-  --color-bg: #faf8f4;
-  --color-paper-2: #f3efe7;
+  --color-bg: #fbfaf7;
+  --color-paper-2: #f4f1ec;
   --color-surface: #ffffff;
-  --color-ink: #141816;
-  --color-ink-2: #3d443f;
-  --color-ink-muted: #5b625d;
-  --color-line: #e3ded4;
-  --color-line-strong: #b9b1a2;
-  --rule: 2px solid var(--color-ink);
+  --color-ink: #2a2e2b;
+  --color-ink-2: #4a504c;
+  --color-ink-muted: #5c635f;
+  --color-line: #e6e1d9;
+  --color-line-strong: #c9c2b6;
+  --rule: 1px solid var(--color-line-strong);
 
   /* 事業アクセント */
-  --color-agri: #2f6b3f;
-  --color-agri-soft: #e8efe6;
-  --color-agri-deep: #244f30;
-  --color-cosme: #a24c66;
-  --color-cosme-soft: #f6e8ec;
-  --color-cosme-deep: #7d3a4f;
+  --color-agri: #3f7a52;
+  --color-agri-soft: #e3ece5;
+  --color-agri-deep: #2c5a3b;
+  --color-cosme: #a8546f;
+  --color-cosme-soft: #f5e4e8;
+  --color-cosme-deep: #8e4660;
 
   --color-focus: #1d4ed8;
   --color-error: #b3261e;
@@ -46,7 +46,7 @@
   --text-3xl: clamp(2rem, 1.5rem + 2vw, 2.75rem);
   --text-display: clamp(1.85rem, 0.6rem + 4vw, 4rem);
   --leading-body: 1.9;
-  --leading-tight: 1.08;
+  --leading-tight: 1.2;
   --tracking-wide: 0.14em;
 
   /* 余白・形 */
@@ -63,11 +63,13 @@
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --container: 76rem;
   --container-narrow: 46rem;
-  --radius-sm: 0;
-  --radius-md: 0;
+  --radius-sm: 6px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
   --hairline: 1px solid var(--color-line);
   --shadow-sm: 0 1px 2px rgb(31 37 33 / 0.05);
-  --shadow-md: 0 12px 32px -16px rgb(31 37 33 / 0.28);
+  --shadow-md: 0 24px 48px -28px rgb(42 46 43 / 0.28);
 
   /* モーション */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);

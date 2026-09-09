@@ -4,6 +4,19 @@ v1（2事業の等価並置）を土台に、エディトリアル品質へ引�
 
 `/* Hallmark · genre: editorial · macrostructure: Letter+Diptych · theme: custom "Soil & Water" · enrichment: E5 (hand-built SVG) · polish: HP1 (vertical rail) · nav: N9 · footer: Ft1 */`
 
+## v3「Luminous」— 美容・化粧品サイトの文法へ（ユーザー要望: SANKOU! 美容カテゴリ参考）
+参考ギャラリー（sankoudesign.com/category/beauty-cosmetics-caregoods/）で共通する DNA を抽出（特定サイトの模写はしない）:
+写真主導の大きなビジュアル／ミント・ブラッシュ・生成りの淡い色面／細めの明朝・広い字間／左右分割のヒーロー／角丸の写真マスク（アーチ）／英字の見出し語（Fragrance Collection 等）／たっぷりの余白。
+
+ideanova への適用（構造は v2.1 を維持し、表層と余白を置き換える）:
+- 色: 紙 #fbfaf7、農業＝セージ #e3ece5 / #3f7a52、化粧水＝ブラッシュ #f5e4e8 / #b8607c。インクは #2a2e2b に和らげる。2px のインク罫は廃止し hairline のみ。
+- 形: 角丸を復活（sm 6 / md 16 / lg 32）。ヒーロー写真はアーチ形マスク。ボタンはピル型・枠線、hover でインク塗り。
+- 型: display は 400/500 ウェイト、letter-spacing 0.02em、line-height 1.2。見出しに英字の display 行（Agriculture / Skincare）を添える（装飾アイブロウではなく h2 の一部）。
+- ヒーロー: 左＝紙の面に縦罫＋H1＋リード＋CTA、右＝写真スロット（未設定時はセージ→ブラッシュのグラデーション面に線画）。
+- 二つの柱: 左右並置から「上下に積んだ色面（セージ／ブラッシュ）」へ。各段は 5:7、写真は角丸 16。
+- 締め: 黒ベタをやめ、淡いグラデーション面にインク文字。
+- 画像スロット・原稿・a11y・モーション規律は v2.1 と同じ。
+
 ## v2.1「パキッと」調整（ユーザー要望: 独特のUI／パキッとお洒落）
 - インクを #141816 に締め、hairline に加えて **2px のインク罫（`--rule`）** をページ見出し・diptych・フッター・図版枠に使う。角丸は全廃（`--radius: 0`）。
 - 見出しは 700 ウェイト、line-height 1.08。ボタンは角型・インク塗り、hover で紙色に反転。

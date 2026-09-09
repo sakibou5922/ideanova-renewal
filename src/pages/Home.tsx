@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { HeroArt } from '../components/Art';
 import { LinkButton } from '../components/Button';
 import { Plate } from '../components/Plate';
-import { images } from '../data/images';
+import { asset, images } from '../data/images';
 import { news, formatDate } from '../data/news';
 import { pillars } from '../data/pillars';
 import { site } from '../data/site';
@@ -20,9 +20,9 @@ export function Home() {
 
   return (
     <>
-      {/* Hero: Letter + HP1 縦罫 + E5 線画（写真が設定されれば写真）。ページで唯一のリビール */}
+      {/* Hero: 左＝紙の面、右＝アーチ形の写真スロット。ページで唯一のリビール */}
       <section className={styles.hero} aria-labelledby="hero-title">
-        <div className={styles.heroGrid}>
+        <div className={styles.heroCopy}>
           <p className={styles.rail} aria-hidden="true">
             {site.name}
             <span className={styles.railSep} />
@@ -52,99 +52,81 @@ export function Home() {
               </Link>
             </div>
           </div>
-          <div className={styles.heroArt}>
-            {images.hero.src ? (
-              <figure className={styles.heroPhoto}>
-                <img src={images.hero.src} alt={images.hero.alt} fetchPriority="high" decoding="async" />
-              </figure>
-            ) : (
-              <figure className={styles.heroPlate}>
-                <HeroArt />
-                <figcaption className={styles.heroCaption}>
-                  <span className={styles.heroCaptionNum}>Fig. 01</span>
-                  土と水 — 芽と雫
-                </figcaption>
-              </figure>
-            )}
-          </div>
         </div>
-
-        {/* 事実のみの仕様行 */}
-        <dl className={styles.spec}>
-          <div className={styles.specItem}>
-            <dt>所在地</dt>
-            <dd>福島県郡山市</dd>
-          </div>
-          <div className={styles.specItem}>
-            <dt>設立</dt>
-            <dd>{site.founded}</dd>
-          </div>
-          <div className={styles.specItem}>
-            <dt>事業</dt>
-            <dd>農業支援 ／ 化粧水</dd>
-          </div>
-        </dl>
+        <div className={styles.heroVisual}>
+          {images.hero.src ? (
+            <img src={asset(images.hero.src)} alt={images.hero.alt} fetchPriority="high" decoding="async" className={styles.heroImg} />
+          ) : (
+            <div className={styles.heroField} role="img" aria-label="土から伸びる芽と、雫が落ちて広がる波紋の線画">
+              <HeroArt className={styles.heroArt} />
+            </div>
+          )}
+        </div>
       </section>
 
-      {/* 二つの柱: 2px のインク罫で分割した diptych */}
-      <section className={styles.pillars} aria-labelledby="pillars-title">
+      {/* 事実のみの仕様行 */}
+      <dl className={`container ${styles.spec}`}>
+        <div className={styles.specItem}>
+          <dt>所在地</dt>
+          <dd>福島県郡山市</dd>
+        </div>
+        <div className={styles.specItem}>
+          <dt>設立</dt>
+          <dd>{site.founded}</dd>
+        </div>
+        <div className={styles.specItem}>
+          <dt>事業</dt>
+          <dd>農業支援 ／ 化粧水</dd>
+        </div>
+      </dl>
+
+      {/* 二つの柱: 色面を上下に積む */}
+      <section aria-labelledby="pillars-title">
         <h2 id="pillars-title" className="visually-hidden">
           当社の主なサービス
         </h2>
         {pillars.map((p, i) => {
           const pending = p.lead.startsWith('[要確認]');
           return (
-            <Link
-              key={p.id}
-              to={`/service#${p.anchor}`}
-              className={styles.pillar}
-              data-pillar={p.id}
-            >
-              <span className={styles.pillarHead}>
-                <span className={styles.pillarNum} aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className={styles.pillarTitle}>{p.title}</span>
-              </span>
-              <Plate image={images[p.id]} pillar={p.id} ratio="16/10" className={styles.pillarPlate} />
-              <span className={styles.pillarLead} data-pending={pending}>
-                {p.lead}
-              </span>
-              <span className={styles.pillarMore}>
-                詳しく見る
-                <span className={styles.pillarArrow} aria-hidden="true">
-                  →
-                </span>
-              </span>
-            </Link>
+            <div key={p.id} className={styles.field} data-pillar={p.id}>
+              <div className={`container ${styles.fieldGrid}`} data-reverse={i % 2 === 1}>
+                <Plate image={images[p.id]} pillar={p.id} ratio="4/5" className={styles.fieldPlate} />
+                <div className={styles.fieldBody}>
+                  <p className={styles.fieldNum} aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className={styles.fieldTitle}>
+                    <span className={styles.fieldTitleEn}>{p.labelEn}</span>
+                    {p.title}
+                  </h3>
+                  <p className={styles.fieldLead} data-pending={pending}>
+                    {p.lead}
+                  </p>
+                  <LinkButton to={`/service#${p.anchor}`} variant="ghost">
+                    詳しく見る
+                  </LinkButton>
+                </div>
+              </div>
+            </div>
           );
         })}
       </section>
 
-      {/* Mission: 欄外注つきの非対称段組 */}
+      {/* Mission: 余白の多い中央段組 */}
       <section className={styles.mission} aria-labelledby="mission-title">
-        <div className={`container ${styles.missionGrid}`}>
-          <div className={styles.missionAside}>
-            <h2 id="mission-title" className={styles.missionHead}>
-              私たちについて
-            </h2>
-            <p className={styles.missionNote}>
-              {site.name}
-              <br />
-              {site.postalCode}
-              <br />
-              {site.address}
-            </p>
-          </div>
-          <div className={styles.missionBody}>
-            <p className={styles.missionText}>
-              {site.name}
-              は地域に根付いた活動を続けており、当社独自のITプラットフォームを活用し、活気ある地域作りを目指します。
-            </p>
-            <p className={styles.missionText}>
-              農業支援と化粧水事業の二つの柱で、地方部の暮らしと産業を支えることを目指します。
-            </p>
-            <Link to="/company" className={`textLink ${styles.missionLink}`}>
+        <div className="container container--narrow">
+          <h2 id="mission-title" className={styles.missionHead}>
+            私たちについて
+          </h2>
+          <p className={styles.missionText}>
+            {site.name}
+            は地域に根付いた活動を続けており、当社独自のITプラットフォームを活用し、活気ある地域作りを目指します。
+          </p>
+          <p className={styles.missionText}>
+            農業支援と化粧水事業の二つの柱で、地方部の暮らしと産業を支えることを目指します。
+          </p>
+          <div className={styles.missionLink}>
+            <Link to="/company" className="textLink">
               代表挨拶・会社概要
               <span className="arrow" aria-hidden="true">
                 →
@@ -184,7 +166,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Statement close */}
+      {/* Close: 淡いグラデーション面 */}
       <section className={styles.close} aria-labelledby="close-title">
         <div className={`container ${styles.closeGrid}`}>
           <div>
@@ -200,9 +182,7 @@ export function Home() {
               <span className={styles.closeTelLabel}>TEL</span>
               <span className={styles.closeTelNum}>{site.tel}</span>
             </a>
-            <LinkButton to="/contact" variant="ghost" className={styles.closeButton}>
-              お問い合わせフォーム
-            </LinkButton>
+            <LinkButton to="/contact">お問い合わせフォーム</LinkButton>
           </div>
         </div>
       </section>

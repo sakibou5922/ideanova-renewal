@@ -11,7 +11,7 @@
 }
 
 .header[data-scrolled='true'] {
-  border-bottom-color: var(--color-ink);
+  border-bottom-color: var(--color-line);
 }
 
 .skip {
@@ -55,7 +55,7 @@
   width: 22px;
   height: 22px;
   flex: none;
-  border: 2px solid var(--color-ink);
+  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -69,7 +69,7 @@
 
 .brandName {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 500;
   font-size: var(--text-lg);
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -250,7 +250,7 @@
     left: var(--space-3);
     right: var(--space-3);
     bottom: 8px;
-    height: 2px;
+    height: 1px;
     background: var(--color-ink);
     transform: scaleX(0);
     transform-origin: left;

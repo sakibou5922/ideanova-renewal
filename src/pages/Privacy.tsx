@@ -12,7 +12,10 @@ export function Privacy() {
   return (
     <div className="container container--narrow">
       <div className="pageHead">
-        <h1 className="pageTitle">プライバシーポリシー</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">Privacy Policy</span>
+          プライバシーポリシー
+        </h1>
       </div>
       <div className={styles.body}>
         <p>

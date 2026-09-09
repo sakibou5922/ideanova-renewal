@@ -13,7 +13,10 @@ export function NewsList() {
   return (
     <div className="container">
       <div className="pageHead">
-        <h1 className="pageTitle">新着情報</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">News</span>
+          新着情報
+        </h1>
       </div>
       <ul className={styles.list}>
         {news.map((n) => (

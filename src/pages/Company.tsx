@@ -17,7 +17,6 @@ const profile: Array<[string, React.ReactNode]> = [
   ['TEL', site.tel],
   ['FAX', site.fax],
   ['事業内容', site.business],
-  ['関連企業', site.relatedCompany],
 ];
 
 export function Company() {
@@ -30,7 +29,10 @@ export function Company() {
   return (
     <div className="container">
       <div className="pageHead">
-        <h1 className="pageTitle">会社概要</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">Company</span>
+          会社概要
+        </h1>
       </div>
 
       {/* 代表挨拶: レター型 */}

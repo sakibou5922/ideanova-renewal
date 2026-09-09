@@ -87,7 +87,10 @@ export function Contact() {
   if (status === 'done') {
     return (
       <div className={`container container--narrow ${styles.done}`} role="status">
-        <h1 className="pageTitle">お問い合わせ内容を受け付けました</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">Thank you</span>
+          お問い合わせ内容を受け付けました
+        </h1>
         <p className={styles.doneNote}>
           ※ 現在フォームの送信先は未設定です（要確認）。本番公開前に送信処理を接続してください。
         </p>
@@ -101,7 +104,10 @@ export function Contact() {
   return (
     <div className="container">
       <div className="pageHead">
-        <h1 className="pageTitle">お問い合わせ</h1>
+        <h1 className="pageTitle">
+          <span className="pageTitleEn">Contact</span>
+          お問い合わせ
+        </h1>
         <p className="pageLede">
           農業支援事業・化粧水事業に関するご相談、その他のお問い合わせは下記フォームまたはお電話にてご連絡ください。
         </p>

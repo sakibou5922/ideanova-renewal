@@ -32,7 +32,7 @@
   left: 0;
   right: 0;
   bottom: 8px;
-  height: 2px;
+  height: 1px;
   background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
@@ -80,7 +80,7 @@
   font-size: clamp(6rem, 14vw, 11rem);
   line-height: 1;
   color: var(--color-accent);
-  opacity: 0.06;
+  opacity: 0.08;
   pointer-events: none;
   user-select: none;
 }
@@ -95,6 +95,10 @@
   margin: 0;
 }
 
+.wide {
+  margin-bottom: var(--space-12);
+}
+
 .body {
   display: flex;
   flex-direction: column;
@@ -103,9 +107,20 @@
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   font-size: var(--text-3xl);
+  font-weight: 400;
   padding-bottom: var(--space-4);
-  border-bottom: var(--rule);
+  border-bottom: var(--hairline);
+}
+
+.titleEn {
+  font-size: clamp(2rem, 1.2rem + 3vw, 3.4rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--color-accent);
 }
 
 .subtitle {
@@ -142,8 +157,25 @@
 }
 
 @media (min-width: 768px) {
+  .pillarGrid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  /* 偶数セクションは列定義ごと反転（本文 7 / 図版 5 を維持） */
+  .pillar:nth-of-type(even) .pillarGrid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+
+  .pillar:nth-of-type(even) .figure {
+    order: 2;
+  }
+}
+
+@media (min-width: 1024px) {
   .layout {
-    grid-template-columns: 12rem minmax(0, 1fr);
+    grid-template-columns: 13rem minmax(0, 1fr);
     gap: var(--space-16);
   }
 
@@ -156,23 +188,7 @@
   .railList {
     flex-direction: column;
     gap: var(--space-1);
-    border-left: 2px solid var(--color-ink);
+    border-left: var(--hairline);
     padding-left: var(--space-4);
-  }
-
-  .pillarGrid {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: var(--space-12);
-    align-items: start;
-  }
-
-  .pillar:nth-of-type(even) .figure {
-    order: 2;
-  }
-}
-
-@media (min-width: 1024px) {
-  .layout {
-    grid-template-columns: 14rem minmax(0, 1fr);
   }
 }
